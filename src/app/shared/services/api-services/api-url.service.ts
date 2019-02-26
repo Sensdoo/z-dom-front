@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/index';
 @Injectable()
 export class ApiUrlService {
 
-  private url = 'http://172.16.172.125:8888/api';
+  // private url = 'http://172.16.172.125:8888/api';
+  private url = 'http://188.119.67.106:8888/api';
   private httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };

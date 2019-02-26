@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Address} from '../../../entities/address.entity';
-import {ShareAddressService} from '../../../shared/services/share-data.service';
 import {ApiEntranceService} from '../../../shared/services/api-services/api-entrance.service';
 import {Entrance} from '../../../entities/entrance.entity';
 import {ActivatedRoute} from '@angular/router';
