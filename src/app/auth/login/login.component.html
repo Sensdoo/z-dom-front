@@ -1,0 +1,75 @@
+<div class="auth">
+  <div class="login">
+    <h2>Форма авторизации</h2>
+    <form
+      (ngSubmit)="onSubmit()"
+      class="login-form"
+      [formGroup]="form"
+    >
+
+      <div
+        class="alert alert-{{ type }}"
+        *ngIf="message"
+      >
+        {{ message }}
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{'has-error': form.get('username').invalid && form.get('username').touched}"
+      >
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Введите username"
+          formControlName="username"
+        >
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="form.get('username').invalid && form.get('username').touched"
+      >
+        <span *ngIf="form.get('username').errors['required']">Поле не может быть пустым. </span>
+        <span *ngIf="form.get('username').errors['minlength']">Username не может быть короче 3 символов.</span>
+        <span *ngIf="form.get('username').errors['maxlength']">Username не может быть длиннее 25 символов.</span>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
+      >
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Введите password"
+          formControlName="password"
+        >
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+      >
+        <span *ngIf="form.get('password').errors['required']">Поле не может быть пустым. </span>
+        <span *ngIf="form.get('password').errors['minlength']">
+            Пароль не может быть меньше {{ form.get('password').errors['minlength']['requiredLength']}} символов,
+            введено {{ form.get('password').errors['minlength']['actualLength']}}.
+          </span>
+        <span *ngIf="form.get('password').errors['maxlength']">Username не может быть длиннее 50 символов.</span>
+      </div>
+
+      <div class="form-group">
+        <button
+          class="btn btn-primary form-control"
+          [disabled]="form.invalid"
+        >Войти</button>
+      </div>
+      <div class="form-group">
+        <a routerLink="/registration">Создать аккаунт</a>
+      </div>
+    </form>
+  </div>
+</div>

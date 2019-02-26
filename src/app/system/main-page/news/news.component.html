@@ -1,0 +1,120 @@
+<div class="news">
+  <h3>
+    Новости {{ editing }}
+  </h3>
+  <button
+    *ngIf="role === 'admin'"
+    class="btn-add-news btn btn-primary form-control"
+    (click)="addNews()"
+  >Добавить новость
+  </button>
+  <div
+    class="alert alert-{{ type }}"
+    *ngIf="message"
+  >
+    {{ message }}
+  </div>
+  <div class="news-list">
+    <div
+      *ngFor="let oneNews of allNews"
+      class="cards col-lg-6 col-md-12"
+    >
+      <div class="card">
+        <div class="card-header">
+          <span><b>{{ oneNews.userName }}</b>: {{ oneNews.date | date: 'dd.MM.yy' }}</span>
+          <span class="buttons" *ngIf="role === 'admin'">
+            <button
+              id="deleteBtn"
+              *ngIf="!oneNews.isEdit && !oneNews.isBlocked"
+              class="btn btn-xs mini-button"
+              (click)="deleteNews(oneNews.id)"
+            >
+              <i class="fa fa-trash"></i> удалить
+            </button>
+            <button
+              id="editBtn"
+              class="btn btn-xs mini-button"
+              (click)="editNews(oneNews)"
+              *ngIf="!oneNews.isEdit && !oneNews.isBlocked"
+            >
+              <i class="fas fa-edit"></i> ред.
+            </button>
+            <button
+              id="saveBtn"
+              class="btn btn-xs mini-button"
+              (click)="editNews(oneNews)"
+              *ngIf="oneNews.isEdit"
+            >
+              <i class="fas fa-save"></i> сохр.
+            </button>
+            <button
+              id="cancelBtn"
+              class="btn btn-xs mini-button"
+              (click)="cancel()"
+              *ngIf="oneNews.isEdit"
+            >
+              <i class="fas fa-reply"></i> отмена
+            </button>
+          </span><!-- span buttons -->
+          <span class="float-right">#{{ oneNews.id }}</span>
+
+        </div>
+        <div *ngIf="oneNews.isEdit; else show">
+          <div class="card-body">
+            <form [formGroup]="form">
+              <div class="form-group">
+                <label for="header">Редактирование заголовка: </label>
+                <input
+                  class="form-control"
+                  id="header"
+                  formControlName="header"
+                >
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('header').invalid && form.get('header').touched"
+                >
+                  <span *ngIf="form.get('header').errors['required']">Поле не может быть пустым. </span>
+                  <span *ngIf="form.get('header').errors['minlength']">
+                    Заголовок не может быть меньше 3 символов
+                  </span>
+                  <span *ngIf="form.get('header').errors['maxlength']">
+                    Заголовок не может быть больше 255 символов
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="text">Редактирование новости: </label>
+                <textarea
+                  class="form-control"
+                  type="text"
+                  id="text"
+                  rows="3"
+                  placeholder="макс.255 символов..."
+                  formControlName="text"
+                ></textarea>
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('text').invalid && form.get('header').touched"
+                >
+                  <span *ngIf="form.get('text').errors['required']">Поле не может быть пустым. </span>
+                  <span *ngIf="form.get('text').errors['minlength']">
+                    Новость не может быть меньше 3 символов
+                  </span>
+                  <span *ngIf="form.get('text').errors['maxlength']">
+                    Новость не может быть больше 255 символов
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <ng-template #show>
+          <div class="card-body">
+            <h5 class="card-title">{{ oneNews.header }}</h5>
+            <p class="input-body">{{ oneNews.text }}</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

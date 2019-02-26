@@ -1,0 +1,14 @@
+.block {
+  width: 100%;
+  border: 1px solid #cdcdcd;
+  height: 27px;
+  overflow: hidden;
+  padding: .2rem .5rem;
+  font-size: .8rem;
+  text-align: left;
+}
+
+.block:hover {
+  height: auto;
+  cursor: pointer;
+}

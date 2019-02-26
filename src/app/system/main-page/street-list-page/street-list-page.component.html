@@ -1,0 +1,20 @@
+<div class="street-list">
+  <h3>Список домов</h3>
+  <ul>
+    <li
+      class="d-inline-block col-xl-3 col-lg-6 col-md-12 my-1"
+      *ngFor="let address of addresses">
+      <div class="card">
+        <div class="card-body">
+          <button
+            class="btn btn-outline-primary"
+            (click)="onClick(address.id)"
+          >
+            <img src="../../../../assets/icons/hotel-solid.svg">
+          </button>
+          <p class="card-text" style="margin: auto">{{ address.house }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

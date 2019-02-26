@@ -1,0 +1,155 @@
+<div class="address-page">
+  <div *ngIf="address" class="d-inline">
+    <h3>
+      {{ address.street.name }}, {{ address.house }}
+      <button
+        *ngIf="role === 'admin'"
+        class="btn btn-primary btn-xs float-right"
+        (click)="addEntrance()"
+      >
+        <i class="fa fa-plus"></i>
+      </button>
+    </h3>
+  </div>
+  <div
+    class="alert alert-{{ type }}"
+    *ngIf="message"
+  >
+    {{ message }}
+  </div>
+
+  <button class="btn btn-outline-secondary form-control" (click)="onSwitch()">Переключить сеть</button>
+
+  <ul>
+    <li
+      class="d-inline-block col-xl-4 col-lg-6 col-md-12 my-1"
+      *ngFor="let entrance of entrances">
+      <div class="card text-center">
+        <div class="card-header">
+          <!--<ul class="nav nav-tabs card-header-tabs">-->
+          <span>{{ entrance.entranceNumber }} парадная</span>
+          <small class="text-muted">{{ company }}</small>
+          <!--</ul>-->
+        </div>
+        <div class="card-body">
+          <div *ngIf="entrance.isEdit; else show">
+            <form [formGroup]="form">
+
+              <div class="form-group" *ngIf="!entrance.entranceNumber">
+                <label for="entranceNumber">Парадная: </label>
+                <input
+                  class="form-control"
+                  id="entranceNumber"
+                  type="number"
+                  formControlName="entranceNumber"
+                  placeholder="номер парадной"
+                >
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('entranceNumber').invalid && form.get('entranceNumber').touched"
+                >
+                  <span *ngIf="form.get('entranceNumber').errors['required']">Поле не может быть пустым. </span>
+                  <span *ngIf="form.get('entranceNumber').errors['pattern']">Не верное значение</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="descIzet">Доступ(interzet): </label>
+                <textarea
+                  class="form-control"
+                  id="descIzet"
+                  rows="3"
+                  formControlName="descIzet"
+                  placeholder="Информация по доступу: Интерзет"
+                ></textarea>
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('descIzet').invalid && form.get('descIzet').touched"
+                >
+                  <span *ngIf="form.get('descIzet').errors['required']">Поле не может быть пустым. </span>
+                  <span *ngIf="form.get('descIzet').errors['minlength']">
+                    Информация не может быть меньше 3 символов
+                  </span>
+                  <span *ngIf="form.get('descIzet').errors['maxlength']">
+                    Информация не может быть больше 255 символов
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="descDomru">Доступ(domru): </label>
+                <textarea
+                  class="form-control"
+                  id="descDomru"
+                  rows="3"
+                  formControlName="descDomru"
+                  placeholder="Информация по доступу: Домру"
+                ></textarea>
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('descDomru').invalid && form.get('descDomru').touched"
+                >
+                  <span *ngIf="form.get('descDomru').errors['required']">Поле не может быть пустым. </span>
+                  <span *ngIf="form.get('descDomru').errors['minlength']">
+                    Информация не может быть меньше 3 символов
+                  </span>
+                  <span *ngIf="form.get('descDomru').errors['maxlength']">
+                    Информация не может быть больше 255 символов
+                  </span>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <ng-template #show>
+            <div *ngIf="company === 'Интерзет'">
+              <sens-description [description]="entrance.descriptionInterzet"></sens-description>
+            </div>
+            <div *ngIf="company === 'Домру'">
+              <sens-description [description]="entrance.descriptionDomru"></sens-description>
+            </div>
+          </ng-template>
+        </div>
+        <div class="card-footer d-inline">
+            <span class="buttons">
+              <button
+                id="editBtn"
+                class="btn btn-xs mini-button"
+                (click)="editEntrance(entrance)"
+                *ngIf="!entrance.isEdit && !entrance.isBlocked"
+              >
+              <i class="fas fa-edit"></i> ред.
+            </button>
+            <button
+              id="deleteBtn"
+              *ngIf="!entrance.isEdit && !entrance.isBlocked && role === 'admin'"
+              class="btn btn-xs mini-button"
+              (click)="deleteEntrance(entrance.id)"
+            >
+              <i class="fa fa-trash"></i> удалить
+            </button>
+            <button
+              id="saveBtn"
+              class="btn btn-xs mini-button"
+              (click)="editEntrance(entrance)"
+              *ngIf="entrance.isEdit"
+            >
+              <i class="fas fa-save"> сохр.</i>
+            </button>
+            <button
+              id="cancelBtn"
+              class="btn btn-xs mini-button"
+              (click)="cancel()"
+              *ngIf="entrance.isEdit"
+            >
+              <i class="fas fa-reply"> отмена</i>
+            </button>
+            </span>
+          <div class="info float-right">
+            ред.: {{ entrance.lastUpdate | date: 'dd.MM.yy' }}, <b>{{ entrance.editor }}</b>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,149 @@
+<div class="auth">
+  <div class="registration">
+    <h2>Форма регистрации</h2>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="registration-form"
+    >
+      <div
+        class="alert alert-{{ type }}"
+        *ngIf="message"
+      >
+        {{ message }}
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Введите email"
+          formControlName="email"
+          required
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="form.get('email').invalid && form.get('email').touched"
+        >
+          <span *ngIf="form.hasError('required', 'email')">Поле не может быть пустым. </span>
+          <span *ngIf="form.hasError('email', 'email')">Введите корректный email.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Введите имя"
+          formControlName="name"
+          required
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+        >
+          <span *ngIf="form.hasError('required', 'name')">Поле не может быть пустым. </span>
+          <span *ngIf="form.hasError('minlength', 'name')">Имя не может быть меньше 2 символов.</span>
+          <span *ngIf="form.hasError('maxlength', 'name')">Имя не может быть длиннее 25 символов.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Введите username"
+          formControlName="username"
+          required
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="form.get('username').invalid && form.get('username').touched"
+        >
+          <span *ngIf="form.hasError('required', 'username')">Поле не может быть пустым. </span>
+          <span *ngIf="form.hasError('minlength', 'username')">Username не может быть меньше 3 символов.</span>
+          <span *ngIf="form.hasError('maxlength', 'username')">Username не может быть длиннее 25 символов.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          id="pass"
+          placeholder="Введите пароль"
+          formControlName="pass"
+          required
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="form.get('pass').invalid && form.get('pass').touched"
+        >
+          <span *ngIf="form.hasError('required', 'pass')">Поле не может быть пустым. </span>
+          <span *ngIf="form.hasError('minlength', 'pass')">Пароль не может быть меньше 6 символов.</span>
+          <span *ngIf="form.hasError('maxlength', 'pass')">Пароль не может быть длиннее 50 символов.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPass"
+          placeholder="Подтвердите пароль"
+          formControlName="confirmPass"
+          required
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="form.hasError('passwordsNotEqual') && form.get('confirmPass').touched"
+        >
+          <span>Пароли не совпадают.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="secret"
+          placeholder="Введите кодовое слово"
+          formControlName="secret"
+          required
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="form.get('secret').invalid && form.get('secret').touched"
+        >
+          <span *ngIf="form.hasError('required', 'secret')">Поле не может быть пустым. </span>
+          <span *ngIf="form.hasError('minlength', 'secret')">Кодовое слово не может быть меньше 3 символов.</span>
+          <span *ngIf="form.hasError('maxlength', 'secret')">Кодовое слово не может быть длиннее 10 символов.</span>
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="form.hasError('invalidSecretCode') && form.get('secret').touched && !form.get('secret').invalid"
+        >
+          <span>Не верное кодовое слово. </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button
+          class="btn btn-success form-control"
+        >Отправить
+        </button>
+      </div>
+      <div class="form-group">
+        <button
+          class="btn btn-danger form-control"
+          (click)="onCancel()"
+        >Отмена
+        </button>
+      </div>
+      <a routerLink="/login">Вернуться к авторизации.</a>
+    </form>
+  </div>
+</div>

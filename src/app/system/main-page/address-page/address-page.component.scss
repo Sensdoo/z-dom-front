@@ -1,0 +1,147 @@
+.address-page {
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 25px;
+  /*border: 1px solid #ced4da;*/
+}
+
+.address-page h3 {
+  padding-bottom: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ced4da;
+}
+
+.btn.btn-outline-secondary.form-control {
+  margin: 10px auto;
+}
+
+.address-page ul li {
+  padding: 0 3px;
+}
+
+.address-page .card-header {
+  padding: 2px 10px;
+}
+
+.address-page .card-body {
+  padding: 10px;
+
+}
+
+.address-page .card-header span {
+  float: left;
+  padding: 0 5px;
+}
+
+.address-page .card-header small {
+  float: right;
+  margin-top: 3px;
+  padding: 0 5px;
+}
+
+.address-page .card-body label {
+  float: left;
+}
+
+.address-page .card-footer {
+  padding: 0 10px;
+  font-size: .75rem;
+
+}
+
+.address-page .card-footer .buttons{
+  float: left;
+}
+
+.address-page .card-footer .info {
+  padding: 10px;
+
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 786px) {
+  .address-page {
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  .address-page h3 {
+    font-size: 1.5rem;
+    padding-bottom: 7.5px;
+  }
+
+  .address-page ul li {
+    padding: 0;
+  }
+
+  .address-page > div > h3 > button {
+    padding: 3px 7px;
+  }
+}
+
+
+/*.glyph-icon {*/
+/*width: 0.85rem;*/
+/*height: 0.85rem;*/
+/*}*/
+
+/*table {*/
+/*width: 100%;*/
+/*}*/
+
+/*.td-1 {*/
+/*width: 15%;*/
+/*font-size: .75rem;*/
+/*}*/
+
+/*.td-1-2 {*/
+/*width: 4%;*/
+/*font-size: .75rem;*/
+/*}*/
+
+
+/*.td-2 {*/
+/*width: 80%;*/
+/*}*/
+
+/*.td-3 {*/
+/*width: 85%;*/
+/*font-size: .5rem;*/
+/*text-align: right;*/
+/*}*/
+
+/*.block {*/
+/*width: 100%;*/
+/*border: 1px solid #cdcdcd;*/
+/*height: auto;*/
+/*overflow: hidden;*/
+/*padding: .2rem .5rem;*/
+/*font-size: .8rem;*/
+/*}*/
+
+/*.block:hover {*/
+/*height: auto;*/
+/*cursor: pointer;*/
+/*}*/
+
+/*.btn-xs {*/
+/*padding: .2rem .25rem .075rem .4rem;*/
+/*font-size: .85rem;*/
+/*border-radius: 0.2rem;*/
+/*}*/
+
+/*.danger {*/
+/*background: red;*/
+/*}*/
+
+/*.primary {*/
+/*background: #5095ff;*/
+/*}*/
+
+/*.table-font-size {*/
+/*font-size: 0.5rem*/
+/*}*/

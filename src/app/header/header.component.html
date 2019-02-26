@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/main-page/news">Address-book</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/main-page/news">Главная</a>
+      </li>
+    </ul>
+    <i class="fa fa-user"></i> <span>{{ username }}</span>
+    <div class="form-inline my-2 my-lg-0">
+      <button
+        class="logout dropdown-item"
+        (click)="logout()"
+      >
+        Выйти
+      </button>
+      <!--<div class="nav-item dropdown">-->
+        <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+           <!--Меню-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+          <!--<a class="dropdown-item" href="#">Profile</a>-->
+          <!--<div class="dropdown-divider"></div>-->
+          <!---->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</nav>
